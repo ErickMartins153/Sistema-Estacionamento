@@ -1,12 +1,22 @@
-import "./App.css";
+import { createBrowserRouter, Route, RouterProvider } from "react-router-dom";
+
+import MainScreen from "./screens/MainScreen";
+import RegisterScreen from "./screens/RegisterScreen";
+import PageLayout from "./components/PageLayout";
+
+const router = createBrowserRouter([
+  {
+    path: "/",
+    element: <PageLayout />,
+    children: [
+      { path: "", element: <MainScreen /> },
+      { path: "add", element: <RegisterScreen /> },
+    ],
+  },
+]);
 
 function App() {
-  return (
-    <>
-      <div className="p-10 mb-8">a</div>
-      asdyugasyudsgyu
-    </>
-  );
+  return <RouterProvider router={router} />;
 }
 
 export default App;
