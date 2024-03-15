@@ -52,9 +52,10 @@ button {
   font-size: 1em;
   font-weight: 500;
   font-family: inherit;
-  background-color: #ffce48;
+  background-color: #93867f;
   cursor: pointer;
   transition: border-color 0.25s;
+  color: #ebf5ee;
 }
 button:hover {
   border-color: #646cff;
@@ -77,4 +78,17 @@ button:focus-visible {
 
 label {
   top: -16px;
+}
+
+.slot {
+  height: 75px;
+  width: 184px;
+  border: 3px solid #ffffff;
+}
+
+.svg-background {
+  height: 100%;
+  background-image: url("assets/wave-haikei.svg");
+  background-size: cover;
+  background-repeat: no-repeat;
 }
