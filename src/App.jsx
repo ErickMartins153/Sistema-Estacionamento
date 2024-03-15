@@ -11,6 +11,7 @@ const router = createBrowserRouter([
     children: [
       { path: "", element: <MainScreen /> },
       { path: "add", element: <RegisterScreen /> },
+      { path: "parkingLot", element: <RegisterScreen /> },
     ],
   },
 ]);
