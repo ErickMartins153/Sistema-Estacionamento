@@ -15,7 +15,7 @@ export default function ParkingLotScreen() {
 
   return (
     <>
-      <Modal open={isOpen} onClose={modalHandler}>
+      <Modal open={isOpen}>
         <h1>Informações</h1>
         <div>
           <InfoContent label="Nome" value="teste" />
@@ -23,6 +23,7 @@ export default function ParkingLotScreen() {
           <InfoContent label="Tipo" value="Carro" />
           <InfoContent label="Preferencial" value="Sim" />
         </div>
+        <button onClick={modalHandler}>Fechar</button>
       </Modal>
       <div className="ml-4 mt-4">
         <Link to="..">Voltar</Link>
@@ -31,7 +32,12 @@ export default function ParkingLotScreen() {
       <div className="bg-gray-300 mx-2 mb-2 rounded-xl shadow-md overflow-hidden border-[1px] border-gray-400">
         <div className="m-4 parking-6">
           {DUMMY.map((value) => (
-            <Slot slotDetails={value} key={value} onClick={modalHandler} />
+            <Slot
+              slotDetails={value}
+              key={value}
+              onClick={modalHandler}
+              selectable={true}
+            />
           ))}
         </div>
       </div>

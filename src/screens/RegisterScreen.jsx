@@ -1,10 +1,11 @@
 import { useNavigate } from "react-router-dom";
-import Input from "../components/Input";
-import Select from "../components/Select";
 import { useState } from "react";
-import Modal from "../components/Modal";
+
+import Form from "../components/Form";
+import SelectSLotScreen from "./SelectSLotScreen";
 
 export default function RegisterScreen() {
+  const [isSelecting, setIsSelecting] = useState(false);
   const [formFields, setFormFields] = useState({
     Nome: "",
     Placa: "",
@@ -12,55 +13,52 @@ export default function RegisterScreen() {
     Preferencial: "",
   });
 
-  const navigate = useNavigate();
-
   function onChange(key, value) {
     setFormFields((formFields) => ({ ...formFields, [key]: value }));
   }
 
+  function stepHandler() {
+    setIsSelecting((prevState) => !prevState);
+  }
+
   function submitHandler() {
     for (const field in formFields) {
+      console.log(formFields[field]);
       if (formFields[field] === "") {
         alert("Todos os campos devem, obrigatoriamente, ser preenchidos!");
         return;
       }
     }
-    alert(
-      `
-              nome: ${formFields.Nome}, 
-              placa: ${formFields.Placa}, 
-              tipo: ${formFields.Tipo}, 
-              preferencial: ${formFields.Preferencial}`
-    );
+    stepHandler();
+    // alert(
+    //   `
+    //           nome: ${formFields.Nome},
+    //           placa: ${formFields.Placa},
+    //           tipo: ${formFields.Tipo},
+    //           preferencial: ${formFields.Preferencial}`
+    // );
   }
 
   return (
     <>
-      <h1 className="text-center mt-8">Resgistrar</h1>
-      <div className="flex flex-1 flex-col justify-center items-center">
-        <form
-          onSubmit={(e) => e.preventDefault()}
-          id="form"
-          className="flex flex-col flex-1 items-center justify-center"
-        >
-          <Input label="Nome" onChange={onChange} value={formFields.Nome} />
-          <Input label="Placa" onChange={onChange} value={formFields.Placa} />
-          <Select
-            label="Tipo"
-            onChange={onChange}
-            options={["Carro", "Moto", "Onibus"]}
-          />
-          <Select
-            label="Preferencial"
-            onChange={onChange}
-            options={["Sim", "Não"]}
-          />
-          <div className="flex gap-4 mb-8">
-            <button onClick={() => navigate(-1)}>Cancelar</button>
-            <button onClick={submitHandler}>Registrar</button>
+      {!isSelecting && (
+        <>
+          <h1 className="text-center mt-8">Registrar</h1>
+          <div className="flex flex-1 flex-col justify-center items-center">
+            <Form
+              nomeValue={formFields.Nome}
+              placaValue={formFields.Placa}
+              tipoValue={formFields.Tipo}
+              preferencialValue={formFields.Preferencial}
+              onSubmit={submitHandler}
+              onChange={onChange}
+            />
           </div>
-        </form>
-      </div>
+        </>
+      )}
+      {isSelecting && (
+        <SelectSLotScreen goBack={stepHandler} formFields={formFields} />
+      )}
     </>
   );
 }
