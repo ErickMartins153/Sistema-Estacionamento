@@ -1,10 +1,10 @@
 import { Link } from "react-router-dom";
 
-export default function Slot({ slotDetails }) {
+export default function Slot({ slotDetails, onClick }) {
   return (
     <div>
-      <Link onClick={() => alert("botao " + slotDetails)}>
-        <button className="slot" />
+      <Link onClick={onClick}>
+        <button className="slot">{slotDetails}</button>
       </Link>
     </div>
   );

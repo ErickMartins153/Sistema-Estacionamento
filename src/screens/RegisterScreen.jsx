@@ -2,6 +2,7 @@ import { useNavigate } from "react-router-dom";
 import Input from "../components/Input";
 import Select from "../components/Select";
 import { useState } from "react";
+import Modal from "../components/Modal";
 
 export default function RegisterScreen() {
   const [formFields, setFormFields] = useState({
@@ -10,6 +11,7 @@ export default function RegisterScreen() {
     Tipo: "",
     Preferencial: "",
   });
+
   const navigate = useNavigate();
 
   function onChange(key, value) {
