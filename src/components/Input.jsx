@@ -1,7 +1,10 @@
-export default function Input({ label }) {
+export default function Input({ label, onChange, value }) {
   return (
     <div className="relative rounded-lg m-6">
       <input
+        onChange={(e) => onChange(label, e.target.value)}
+        autoComplete="off"
+        value={value}
         type="text"
         id={label + "input"}
         className="rounded-lg border-2 border-col relative border-black appearance-none focus:outline-none leading-3 py-3 bg-gray-100"
