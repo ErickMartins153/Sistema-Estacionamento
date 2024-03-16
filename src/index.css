@@ -86,9 +86,22 @@ label {
   border: 3px solid #ffffff;
 }
 
+button.slot {
+  background-color: transparent;
+}
+button.slot:hover {
+  border: 3px solid #cec685;
+  z-index: 1;
+}
 .svg-background {
   height: 100%;
   background-image: url("assets/wave-haikei.svg");
   background-size: cover;
   background-repeat: no-repeat;
+}
+
+.parking-6 {
+  display: grid;
+  grid-template-columns: repeat(2, 182px);
+  grid-template-rows: repeat(6, 69px);
 }

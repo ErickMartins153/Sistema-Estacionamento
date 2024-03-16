@@ -20,10 +20,10 @@ export default function MainScreen() {
           </div>
         </div>
         <div className="flex flex-1 flex-col justify-evenly items-center ">
-          <div className="rounded-full w-48 h-48 bg-[#122C34] flex items-center justify-center">
-            <h2 className="text-[#EBF5EE] break-words text-center text-xl">
+          <div className="rounded-full w-64 h-64 bg-[#122C34] flex items-center justify-center">
+            <h1 className="text-[#EBF5EE] break-words text-center text-2xl">
               Bem vindo ao Elstacionamento
-            </h2>
+            </h1>
           </div>
           <div className="flex flex-col gap-5 ">
             <Link to="add" style={undefined}>
