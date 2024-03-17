@@ -1,8 +1,8 @@
-export default function Input({ label, onChange, value }) {
+export default function Input({ label, labelKey, onChange, value }) {
   return (
     <div className="relative rounded-lg m-6">
       <input
-        onChange={(e) => onChange(label, e.target.value)}
+        onChange={(e) => onChange(labelKey, e.target.value)}
         autoComplete="off"
         value={value}
         type="text"

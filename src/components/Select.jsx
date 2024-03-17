@@ -1,4 +1,4 @@
-export default function Select({ label, options, onChange, value }) {
+export default function Select({ label, labelKey, options, onChange, value }) {
   return (
     <div className="relative m-6">
       <label htmlFor={label + "select"} className="absolute">
@@ -7,7 +7,7 @@ export default function Select({ label, options, onChange, value }) {
       <select
         id={label + "select"}
         className="p-2"
-        onChange={(e) => onChange(label, e.target.value)}
+        onChange={(e) => onChange(labelKey, e.target.value)}
         value={value}
         style={{ width: 210 }}
       >

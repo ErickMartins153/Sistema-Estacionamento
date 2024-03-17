@@ -17,16 +17,28 @@ export default function Form({
       id="form"
       className="flex flex-col flex-1 items-center justify-center"
     >
-      <Input label="Nome" onChange={onChange} value={nomeValue} />
-      <Input label="Placa" onChange={onChange} value={placaValue} />
+      <Input
+        label="Nome"
+        labelKey="ownerName"
+        onChange={onChange}
+        value={nomeValue}
+      />
+      <Input
+        label="Placa"
+        labelKey="licensePlate"
+        onChange={onChange}
+        value={placaValue}
+      />
       <Select
         label="Tipo"
+        labelKey="vehicleType"
         onChange={onChange}
         value={tipoValue}
         options={["Carro", "Moto", "Onibus"]}
       />
       <Select
         label="Preferencial"
+        labelKey="preferential"
         onChange={onChange}
         value={preferencialValue}
         options={["Sim", "Não"]}

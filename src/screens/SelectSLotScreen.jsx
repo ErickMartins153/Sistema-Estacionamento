@@ -3,6 +3,7 @@ import Slot from "../components/Slot";
 import Modal from "../components/Modal";
 import { useState } from "react";
 import InfoContent from "../components/InfoContent";
+import { registerVehicle } from "../utils/requests";
 
 const DUMMY = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 
@@ -18,7 +19,7 @@ export default function SelectSLotScreen({ goBack, formFields }) {
   }
 
   function confirmHandler() {
-    alert("Veiculo placa " + formFields.Placa + " registrado");
+    registerVehicle({ ...formFields });
     modalHandler();
     navigate(-1);
   }
@@ -28,12 +29,14 @@ export default function SelectSLotScreen({ goBack, formFields }) {
       <Modal open={isOpen}>
         <h1>Confirmação</h1>
         <div>
-          <InfoContent label="Nome" value={formFields.Nome} />
-          <InfoContent label="Placa" value={formFields.Placa} />
-          <InfoContent label="Tipo" value={formFields.Tipo} />
-          <InfoContent label="Preferencial" value={formFields.Preferencial} />
+          <InfoContent label="Nome" value={formFields.ownerName} />
+          <InfoContent label="Placa" value={formFields.licensePlate} />
+          <InfoContent label="Tipo" value={formFields.vehicleType} />
+          <InfoContent label="Preferencial" value={formFields.preferential} />
           <InfoContent label="Data" value={date.toLocaleDateString()} />
           <InfoContent label="Horário" value={date.toLocaleTimeString()} />
+          <InfoContent label="Taxa base" value={"R$20,00"} />
+          <InfoContent label="Taxa por hora" value={"R$5,00"} />
           <div className="flex gap-2 mt-4">
             <button onClick={confirmHandler} className="bg-green-600">
               Confirmar
