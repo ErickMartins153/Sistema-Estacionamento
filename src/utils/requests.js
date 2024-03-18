@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const endPoint = "http://localhost:8081/estacionamento";
+const endPoint = "http://localhost:8081";
 
 /*
 ownerName
@@ -9,29 +9,30 @@ vehicleType
 preferential
 */
 
+export async function getSlots() {
+  try {
+    const response = await axios.get(endPoint + "/parking_space");
+
+    return response.data;
+  } catch (error) {
+    console.error(error);
+  }
+}
+
 export async function registerVehicle(vehicle) {
   let typeSanitizer;
   let preferentialSanitizer;
 
-  const dummySpace = {
-    parkingSpace: {
-      id: 2,
-      occupied: false,
-      preferential: true,
-      spaceType: "BUS",
-      date: "17-03-2024",
-      base_rate: 10,
-      hourly_rate: 1,
-    },
-  };
-
   switch (vehicle.vehicleType) {
     case "Carro":
       typeSanitizer = "CAR";
+      break;
     case "Onibus":
       typeSanitizer = "BUS";
+      break;
     case "Moto":
       typeSanitizer = "MOTORCYCLE";
+      break;
   }
 
   switch (vehicle.preferential) {
@@ -44,18 +45,22 @@ export async function registerVehicle(vehicle) {
     ...vehicle,
     vehicleType: typeSanitizer,
     preferential: preferentialSanitizer,
-    ...dummySpace,
   };
-
+  delete vehicleData.parkingSpace.enterTime;
+  delete vehicleData.parkingSpace.exitTime;
   try {
-    console.log(vehicleData);
     const response = await axios.post(
-      endPoint + "/registro/create",
+      endPoint + "/vehicles/create",
       vehicleData
     );
-    console.log("status: " + response.status);
-    console.log(response.data);
+    console.log("deu bom");
   } catch (error) {
-    console.error(error);
+    console.log("deu ruim");
+    // console.error(error);
   }
+}
+
+export async function getDriverDetails(id) {
+  const response = await axios.get(endPoint + "/vehicles/" + id);
+  return response.data;
 }

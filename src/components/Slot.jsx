@@ -1,20 +1,42 @@
 import { Link } from "react-router-dom";
+import { getDriverDetails } from "../utils/requests";
 
-export default function Slot({ slotDetails, onClick, selectable }) {
+export default function Slot({
+  slotDetails,
+  onClick,
+  showModal,
+  mode,
+  onSelectSlot,
+}) {
   let style = "";
-  if (!selectable) {
+  const occupied = slotDetails.occupied;
+
+  if (occupied) {
     style += " bg-slate-400";
   }
 
-  function notAvailableHandler() {
-    alert("Essa vaga já está ocupada, por favor, escolha outra.");
+  async function showInfos() {
+    if (mode === "seeing") {
+      const driverDetails = await getDriverDetails(slotDetails.vehicleId);
+      onClick(slotDetails, driverDetails);
+      showModal();
+    }
+    if (mode === "selecting") {
+      if (occupied) {
+        alert("Essa vaga já está ocupada, por favor, escolha outra.");
+      } else {
+        const { vehicleId, ...slotData } = slotDetails;
+        onSelectSlot(slotData);
+        showModal();
+      }
+    }
   }
 
   return (
     <div className={style}>
-      <Link onClick={selectable ? onClick : notAvailableHandler}>
-        <button disable={selectable} className="slot">
-          <p className="text-black">{slotDetails}</p>
+      <Link onClick={showInfos}>
+        <button disable={occupied ? 1 : 0} className="slot">
+          <p className="text-black">{slotDetails.spaceId}</p>
         </button>
       </Link>
     </div>
