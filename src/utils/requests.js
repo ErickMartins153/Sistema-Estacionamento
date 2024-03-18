@@ -3,13 +3,6 @@ import { vehicleTypeSanitizer } from "./convert";
 
 const endPoint = "http://localhost:8081";
 
-/*
-ownerName
-licensePlate
-vehicleType
-preferential
-*/
-
 export async function getSlots() {
   try {
     const response = await axios.get(endPoint + "/parking_space");
@@ -38,7 +31,6 @@ export async function registerVehicle(vehicle) {
     );
   } catch (error) {
     console.log("deu ruim");
-    // console.error(error);
   }
 }
 
