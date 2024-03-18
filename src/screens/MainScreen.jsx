@@ -32,7 +32,9 @@ export default function MainScreen() {
             <Link to="parkingLot">
               <button className="shadow-xl w-full">Ver estacionamento</button>
             </Link>
-            <button className="shadow-xl w-full">Sair com veículo</button>
+            <Link to="leave">
+              <button className="shadow-xl w-full">Sair com veículo</button>
+            </Link>
           </div>
         </div>
       </div>

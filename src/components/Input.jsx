@@ -7,7 +7,7 @@ export default function Input({ label, labelKey, onChange, value }) {
         value={value}
         type="text"
         id={label + "input"}
-        className="rounded-lg border-2 border-col relative border-black appearance-none focus:outline-none leading-3 py-3 bg-gray-100"
+        className="rounded-lg border-2 border-col relative border-black appearance-none focus:outline-none leading-3 py-3 bg-gray-100 pl-2"
       />
       <label
         htmlFor={label + "input"}

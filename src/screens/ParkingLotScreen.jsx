@@ -53,16 +53,24 @@ export default function ParkingLotScreen() {
       </div>
       <h1 className="text-center mt-12">Ver estacionamento</h1>
       <div className="bg-gray-300 mx-2 mb-2 rounded-xl shadow-md overflow-hidden border-[1px] border-gray-400">
-        <div className="m-4 parking-6">
-          {slots.map((slot) => (
-            <Slot
-              slotDetails={slot}
-              key={slot.spaceId}
-              onClick={modalHandler}
-              showModal={showModal}
-            />
-          ))}
-        </div>
+        {slots.length < 1 && (
+          <div className="flex flex-1 border-2 justify-center items-center">
+            <h2>O Elstacionamento se encontra fechado no momento.</h2>
+          </div>
+        )}
+        {slots.length >= 1 && (
+          <div className="m-4 parking-6">
+            {slots.map((slot) => (
+              <Slot
+                slotDetails={slot}
+                key={slot.spaceId}
+                onClick={modalHandler}
+                showModal={showModal}
+                mode="seeing"
+              />
+            ))}
+          </div>
+        )}
       </div>
     </>
   );

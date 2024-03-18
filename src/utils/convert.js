@@ -1,5 +1,4 @@
 export function convertType(type) {
-  console.log(type);
   switch (type) {
     case "CAR":
       return "Carro";
@@ -8,4 +7,10 @@ export function convertType(type) {
     case "BUS":
       return "Onibus";
   }
+}
+
+export function reaisFormatter(value) {
+  const formattedValue = parseFloat(value).toFixed(2);
+
+  return "R$ " + formattedValue.replace(".", ",").toLocaleString("pt-BR");
 }

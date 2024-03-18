@@ -32,9 +32,9 @@ export default function SelectSLotScreen({ goBack, formFields }) {
     const hourlyRateWorkaround = selectedSlot["hourlyRate"];
     delete selectedSlot["hourlyRate"];
     const chosenSlot = { ...selectedSlot, hourly_rate: hourlyRateWorkaround };
-    const vehicleData = { ...formFields, parkingSpace: { ...chosenSlot } };
+    const vehicleData = { ...formFields, parkingSpace: chosenSlot["spaceId"] };
     registerVehicle({ ...vehicleData });
-    // navigate(-1);
+    navigate(-1);
     showModalHandler();
   }
 
@@ -43,12 +43,12 @@ export default function SelectSLotScreen({ goBack, formFields }) {
       <Modal open={isOpen}>
         <h1>Confirmação</h1>
         <div>
-          <InfoContent label="Nome" value={formFields.ownerName} />
-          <InfoContent label="Placa" value={formFields.licensePlate} />
-          <InfoContent label="Tipo" value={formFields.vehicleType} />
-          <InfoContent label="Preferencial" value={formFields.preferential} />
-          <InfoContent label="Taxa base" value={"R$20,00"} />
-          <InfoContent label="Taxa por hora" value={"R$5,00"} />
+          <div className="flex flex-1 flex-col justify-center">
+            <InfoContent label="Nome" value={formFields.ownerName} />
+            <InfoContent label="Placa" value={formFields.licensePlate} />
+            <InfoContent label="Tipo" value={formFields.vehicleType} />
+            <InfoContent label="Preferencial" value={formFields.preferential} />
+          </div>
           <div className="flex gap-2 mt-4">
             <button onClick={confirmHandler} className="bg-green-600">
               Confirmar

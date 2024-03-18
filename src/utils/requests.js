@@ -49,11 +49,11 @@ export async function registerVehicle(vehicle) {
   delete vehicleData.parkingSpace.enterTime;
   delete vehicleData.parkingSpace.exitTime;
   try {
+    console.log(vehicleData);
     const response = await axios.post(
       endPoint + "/vehicles/create",
       vehicleData
     );
-    console.log("deu bom");
   } catch (error) {
     console.log("deu ruim");
     // console.error(error);
@@ -63,4 +63,21 @@ export async function registerVehicle(vehicle) {
 export async function getDriverDetails(id) {
   const response = await axios.get(endPoint + "/vehicles/" + id);
   return response.data;
+}
+
+async function leaveVehicle(id) {
+  const response = await axios.delete(endPoint + "/vehicles/delete/" + id);
+}
+
+export async function getPaymentData(slotData) {
+  const leaveVehicleData = await leaveVehicle(slotData.vehicleId);
+  try {
+    const response = await axios.get(
+      endPoint + "/parking_space/payment/" + slotData.spaceId
+    );
+    console.log(response.data);
+    return response.data;
+  } catch (error) {
+    console.log("deu ruim");
+  }
 }
