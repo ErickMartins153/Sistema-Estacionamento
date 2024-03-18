@@ -11,11 +11,28 @@ export default function Slot({
   formFields,
 }) {
   let style = "";
+  let textStyle = "";
   const occupied = slotDetails.occupied;
-  const preferential = slotDetails.spacePreferential ? "Preferencial" : "";
+  const slotPreferential = slotDetails.spacePreferential;
+  const slotVehicleType = slotDetails.spaceType;
+  const formVehicleType = vehicleTypeSanitizer(formFields.vehicleType);
+  const formPreferential = formFields.preferential === "Sim" ? true : false;
+  const preferential = slotPreferential ? "Preferencial" : "";
+  const formPreferentialText = formPreferential ? " Preferencial" : "";
 
   if (occupied) {
-    style += " bg-slate-400";
+    style += " bg-slate-600";
+    textStyle += " text-white";
+  }
+
+  if (mode === "selecting") {
+    if (
+      formVehicleType !== slotVehicleType ||
+      (formPreferential !== slotPreferential && !occupied)
+    ) {
+      style += " bg-red-600";
+      textStyle += " text-white";
+    }
   }
 
   async function showInfos() {
@@ -32,10 +49,15 @@ export default function Slot({
       if (occupied) {
         alert("Essa vaga já está ocupada, por favor, escolha outra.");
       } else {
-        const formVehicleType = vehicleTypeSanitizer(formFields.vehicleType);
-        if (formVehicleType !== slotDetails.spaceType) {
+        if (
+          formVehicleType !== slotVehicleType ||
+          formPreferential !== slotPreferential
+        ) {
           alert(
-            "Esta vaga não aceita veículos do tipo " + formFields.vehicleType
+            "Esta vaga não aceita veículos do tipo " +
+              formFields.vehicleType +
+              " " +
+              formPreferentialText
           );
         } else {
           const { vehicleId, ...slotData } = slotDetails;
@@ -66,8 +88,8 @@ export default function Slot({
     <div className={style}>
       <Link onClick={showInfos}>
         <button disable={disableHandler} className="slot">
-          <p className="text-black">
-            {convertvehicleType(slotDetails.spaceType) + " " + preferential}
+          <p className={`text-black ${textStyle}`}>
+            {convertvehicleType(slotVehicleType) + " " + preferential}
           </p>
         </button>
       </Link>

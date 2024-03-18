@@ -59,7 +59,7 @@ export default function ParkingLotScreen() {
           </div>
         )}
         {slots.length >= 1 && (
-          <div className="m-4 parking-6">
+          <div className="m-4 parking-6 items-center justify-center">
             {slots.map((slot) => (
               <Slot
                 slotDetails={slot}
@@ -67,6 +67,7 @@ export default function ParkingLotScreen() {
                 onClick={modalHandler}
                 showModal={showModal}
                 mode="seeing"
+                formFields=""
               />
             ))}
           </div>

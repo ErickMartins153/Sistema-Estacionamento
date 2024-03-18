@@ -6,6 +6,8 @@ export function convertType(type) {
       return "Moto";
     case "BUS":
       return "Onibus";
+    case "BIKE":
+      return "Bicicleta";
   }
 }
 
@@ -23,6 +25,8 @@ export function vehicleTypeSanitizer(vehicleType) {
       return "BUS";
     case "Moto":
       return "MOTORCYCLE";
+    case "Bicicleta":
+      return "BIKE";
   }
 }
 
@@ -34,5 +38,7 @@ export function convertvehicleType(vehicleType) {
       return "Onibus";
     case "MOTORCYCLE":
       return "Moto";
+    case "BIKE":
+      return "Bicicleta";
   }
 }

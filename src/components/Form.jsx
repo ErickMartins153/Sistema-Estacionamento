@@ -34,7 +34,7 @@ export default function Form({
         labelKey="vehicleType"
         onChange={onChange}
         value={tipoValue}
-        options={["Carro", "Moto", "Onibus"]}
+        options={["Carro", "Moto", "Onibus", "Bicicleta"]}
       />
       <Select
         label="Preferencial"
@@ -44,8 +44,12 @@ export default function Form({
         options={["Sim", "Não"]}
       />
       <div className="flex gap-4 mb-8">
-        <button onClick={() => navigate(-1)}>Cancelar</button>
-        <button onClick={onSubmit}>Registrar</button>
+        <button onClick={() => navigate(-1)} className="bg-red-600">
+          Cancelar
+        </button>
+        <button onClick={onSubmit} className="bg-green-600">
+          Registrar
+        </button>
       </div>
     </form>
   );

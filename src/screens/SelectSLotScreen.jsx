@@ -33,6 +33,7 @@ export default function SelectSLotScreen({ goBack, formFields }) {
     delete selectedSlot["hourlyRate"];
     const chosenSlot = { ...selectedSlot, hourly_rate: hourlyRateWorkaround };
     const vehicleData = { ...formFields, parkingSpace: chosenSlot["spaceId"] };
+
     registerVehicle({ ...vehicleData });
     navigate(-1);
     showModalHandler();

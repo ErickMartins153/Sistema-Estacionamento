@@ -77,7 +77,6 @@ export default function LeaveScreen() {
           <>
             <h1>Nota de pagamento</h1>
             <div>
-              {/* {new Date().toLocaleTimeString} */}
               <InfoContent
                 label="Dia de hoje"
                 value={date.enterDate.toLocaleDateString()}
@@ -145,6 +144,7 @@ export default function LeaveScreen() {
                 mode="leaving"
                 showModal={showModalHandler}
                 onSelectSlot={selectSlotHandler}
+                formFields=""
               />
             );
           })}

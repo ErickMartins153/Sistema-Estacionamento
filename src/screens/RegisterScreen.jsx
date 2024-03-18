@@ -22,7 +22,7 @@ export default function RegisterScreen() {
 
   function submitHandler() {
     for (const field in formFields) {
-      if (formFields[field] === "") {
+      if (formFields[field].trim() === "") {
         alert("Todos os campos devem, obrigatoriamente, ser preenchidos!");
         return;
       }
@@ -34,7 +34,7 @@ export default function RegisterScreen() {
     <>
       {!isSelecting && (
         <>
-          <h1 className="text-center mt-8">Registrar</h1>
+          <h1 className="text-center mt-8 ">Registrar</h1>
           <div className="flex flex-1 flex-col justify-center items-center">
             <Form
               nomeValue={formFields.ownerName}

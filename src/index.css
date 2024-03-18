@@ -102,6 +102,7 @@ button.slot:hover {
 
 .parking-6 {
   display: grid;
-  grid-template-columns: repeat(2, 182px);
+  grid-template-columns: repeat(5, 182px);
   grid-template-rows: repeat(6, 69px);
+  gap: 6px;
 }
