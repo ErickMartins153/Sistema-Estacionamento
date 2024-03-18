@@ -50,10 +50,12 @@ export default function SelectSLotScreen({ goBack, formFields }) {
             <InfoContent label="Preferencial" value={formFields.preferential} />
           </div>
           <div className="flex gap-2 mt-4">
+            <button className="bg-red-600" onClick={showModalHandler}>
+              Cancelar
+            </button>
             <button onClick={confirmHandler} className="bg-green-600">
               Confirmar
             </button>
-            <button onClick={goBack}>Revisar dados</button>
           </div>
         </div>
       </Modal>
@@ -71,6 +73,7 @@ export default function SelectSLotScreen({ goBack, formFields }) {
                 mode="selecting"
                 showModal={showModalHandler}
                 onSelectSlot={selectSlotHandler}
+                formFields={formFields}
               />
             );
           })}

@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import { getDriverDetails } from "../utils/requests";
+import { convertvehicleType, vehicleTypeSanitizer } from "../utils/convert";
 
 export default function Slot({
   slotDetails,
@@ -7,10 +8,11 @@ export default function Slot({
   showModal,
   mode,
   onSelectSlot,
+  formFields,
 }) {
   let style = "";
   const occupied = slotDetails.occupied;
-  const preferential = slotDetails.spacePreferential ? "P" : "";
+  const preferential = slotDetails.spacePreferential ? "Preferencial" : "";
 
   if (occupied) {
     style += " bg-slate-400";
@@ -23,7 +25,6 @@ export default function Slot({
       }
       const driverDetails = await getDriverDetails(slotDetails.vehicleId);
 
-      // if( driverDetails.vehicleType)
       onClick(slotDetails, driverDetails);
       showModal();
     }
@@ -31,11 +32,16 @@ export default function Slot({
       if (occupied) {
         alert("Essa vaga já está ocupada, por favor, escolha outra.");
       } else {
-        console.log(slotDetails);
-
-        const { vehicleId, ...slotData } = slotDetails;
-        onSelectSlot(slotData);
-        showModal();
+        const formVehicleType = vehicleTypeSanitizer(formFields.vehicleType);
+        if (formVehicleType !== slotDetails.spaceType) {
+          alert(
+            "Esta vaga não aceita veículos do tipo " + formFields.vehicleType
+          );
+        } else {
+          const { vehicleId, ...slotData } = slotDetails;
+          onSelectSlot(slotData);
+          showModal();
+        }
       }
     }
     if (mode === "leaving") {
@@ -61,7 +67,7 @@ export default function Slot({
       <Link onClick={showInfos}>
         <button disable={disableHandler} className="slot">
           <p className="text-black">
-            {slotDetails.spaceType[0] + slotDetails.spaceId + preferential}
+            {convertvehicleType(slotDetails.spaceType) + " " + preferential}
           </p>
         </button>
       </Link>

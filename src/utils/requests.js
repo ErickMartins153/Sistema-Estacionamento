@@ -1,4 +1,5 @@
 import axios from "axios";
+import { vehicleTypeSanitizer } from "./convert";
 
 const endPoint = "http://localhost:8081";
 
@@ -20,27 +21,9 @@ export async function getSlots() {
 }
 
 export async function registerVehicle(vehicle) {
-  let typeSanitizer;
-  let preferentialSanitizer;
+  let typeSanitizer = vehicleTypeSanitizer(vehicle.vehicleType);
+  let preferentialSanitizer = vehicle.preferential === "Sim" ? true : false;
 
-  switch (vehicle.vehicleType) {
-    case "Carro":
-      typeSanitizer = "CAR";
-      break;
-    case "Onibus":
-      typeSanitizer = "BUS";
-      break;
-    case "Moto":
-      typeSanitizer = "MOTORCYCLE";
-      break;
-  }
-
-  switch (vehicle.preferential) {
-    case "Sim":
-      preferentialSanitizer = true;
-    case "Não":
-      preferentialSanitizer = false;
-  }
   const vehicleData = {
     ...vehicle,
     vehicleType: typeSanitizer,
