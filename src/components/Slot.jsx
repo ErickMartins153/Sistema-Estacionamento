@@ -10,7 +10,7 @@ export default function Slot({
   onSelectSlot,
   formFields,
 }) {
-  let style = "";
+  let style = "bg-green-400";
   let textStyle = "";
   const occupied = slotDetails.occupied;
   const slotPreferential = slotDetails.spacePreferential;
@@ -21,7 +21,7 @@ export default function Slot({
   const formPreferentialText = formPreferential ? " Preferencial" : "";
 
   if (occupied) {
-    style += " bg-slate-600";
+    style = " bg-slate-600";
     textStyle += " text-white";
   }
 
@@ -30,7 +30,7 @@ export default function Slot({
       formVehicleType !== slotVehicleType ||
       (formPreferential !== slotPreferential && !occupied)
     ) {
-      style += " bg-red-600";
+      style = " bg-red-600";
       textStyle += " text-white";
     }
   }
