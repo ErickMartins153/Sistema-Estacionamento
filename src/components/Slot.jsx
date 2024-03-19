@@ -28,7 +28,7 @@ export default function Slot({
   if (mode === "selecting") {
     if (
       formVehicleType !== slotVehicleType ||
-      (formPreferential !== slotPreferential && !occupied)
+      formPreferential !== slotPreferential
     ) {
       style = " bg-red-600";
       textStyle += " text-white";

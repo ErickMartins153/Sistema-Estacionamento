@@ -12,7 +12,7 @@ export function convertType(type) {
 }
 
 export function reaisFormatter(value) {
-  const formattedValue = parseFloat(value).toFixed(2);
+  const formattedValue = parseFloat(+value).toFixed(2);
 
   return "R$ " + formattedValue.replace(".", ",").toLocaleString("pt-BR");
 }
